@@ -1,0 +1,135 @@
+@mixin d-flex($justify:null, $align:null, $direction:null) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@mixin font($size: null, $weight: null, $color: null, $align: null) {
+    @if $size != null {
+        font-size: $size;
+    }
+    @if $weight != null {
+        font-weight: $weight;
+    }
+    @if $color != null {
+        color: $color;
+    }
+    @if $align != null {
+        text-align: $align;
+    }
+}
+
+@function to-rem($value, $base: 16px) {
+    @if type-of($value) == 'number' and unit($value) == 'px' {
+        @return math.div($value, $base) * 1rem;
+    } @else {
+        @warn "O valor #{$value} não está em pixels (px). O valor será retornado sem alterações.";
+        @return $value;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+$bg-primary:        #005695;
+$bg-primary:        #124771;
+$color-white:       #fff;
+$color-black:       #232020;
+$sm-device:          36rem;   // 576px
+$md-device:          48rem;   // 768px
+$lg-device:          75rem;   // 1200px
+$xl-device:          75rem;   // 1200px
+
+
+.section {
+    &First {
+        height: 65vh;
+        @include d-flex (null,center);
+        padding-left: 6%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url('../../assets/bannerInicio.png');
+
+        h2 {
+            width: 20%;
+            color: $color-white;
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: $md-device) {
+            height: 50vh;
+            background-position: center;
+
+            h2 {
+                width: 90%;
+                font-size: to-rem(28px);
+                text-align: center;
+            }
+        }
+    }
+
+    &Info {
+        height: 75vh;
+        @include d-flex (space-evenly,center,column);
+
+        h2 {
+            width: 92%;
+            font-size: to-rem(40px);
+            color: #005695;
+        }
+
+        @media (max-width: $md-device) {
+            height: 120vh;
+
+            h2 {
+                font-size: 30px;
+                text-align: center;
+            }
+        }
+    }
+
+    &Cards {
+        height: 50vh;
+        @include d-flex (space-evenly);
+
+        article {
+            width: 20%;
+            @include d-flex (space-evenly,center,column);
+            border-radius: to-rem(10px);
+            background-color: #0157944D;
+        
+            p {
+                width: 90%;
+                font-size: to-rem(22px);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: $md-device) {
+            height: 120vh;
+            align-items: center;
+            flex-direction: column;
+
+            article{
+                width: 70%;
+                height: 25vh;
+
+                p {
+                    font-size: to-rem(18px);
+                }
+
+                img {
+                    width: 15%;
+                }
+            }
+        }
+    }
+}

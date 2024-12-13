@@ -1,0 +1,50 @@
+@use 'sass:math';
+
+@mixin d-flex($justify:null, $align:null, $direction:null) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@mixin font($size: null, $weight: null, $color: null, $align: null) {
+    @if $size != null {
+        font-size: $size;
+    }
+    @if $weight != null {
+        font-weight: $weight;
+    }
+    @if $color != null {
+        color: $color;
+    }
+    @if $align != null {
+        text-align: $align;
+    }
+}
+
+@function to-rem($value, $base: 16px) {
+    @if type-of($value) == 'number' and unit($value) == 'px' {
+        @return math.div($value, $base) * 1rem;
+    } @else {
+        @warn "O valor #{$value} não está em pixels (px). O valor será retornado sem alterações.";
+        @return $value;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+$bg-primary:        #005695;
+$bg-primary:        #124771;
+$color-white:       #fff;
+$color-black:       #232020;
+$sm-device:          36rem;   // 576px
+$md-device:          48rem;   // 768px
+$lg-device:          75rem;   // 1200px
+$xl-device:          75rem;   // 1200px

@@ -1,0 +1,66 @@
+.header {
+    height: 20vh;
+    @include d-flex (space-between,center);
+    background: linear-gradient(90deg, #001b2f 0%, #005695 100%);
+
+    @media (max-width: $md-device) {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    &Nav {
+        width: 20%;
+        @include d-flex(space-between,center);
+
+        @media (max-width: $md-device) {
+            width: 90%;
+        }
+        
+        h1 {
+            color: $color-white;
+            font-size: 30px;
+        }
+    }
+
+    &List {
+        @include d-flex(space-around,center);
+        list-style: none;
+    }
+
+    &Link {
+        font-size: to-rem(20px);
+        color: $color-white;
+        text-decoration: none;
+    }
+
+    &Search {
+        width: 25%;
+        height: 6vh;
+        @include d-flex (space-evenly,center);
+        margin-right: 1%;
+        border-radius: to-rem(20px);
+        border: solid $color-white;
+
+        @media (max-width: $md-device) {
+            display: none;
+        }
+
+        input {
+            width: 60%;
+            height: 10vh;
+            border: none;
+            background-color: transparent;
+
+            &::placeholder {
+                color: $color-white;
+                font-size: to-rem(20px);
+            }
+        }
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+    }
+}
